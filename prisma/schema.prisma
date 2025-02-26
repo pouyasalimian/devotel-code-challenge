@@ -12,3 +12,59 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum WorkModeEnum {
+  REMOTE
+  ONSITE
+  HYBRID
+}
+
+model Location {
+  id    Int    @id @default(autoincrement())
+  city  String
+  state String
+
+  jobOffers JobOffer[]
+
+  @@unique([city, state])
+  @@map("locations")
+}
+
+model Company {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  website  String?
+  industry String?
+
+  jobOffers JobOffer[]
+
+  @@map("companies")
+}
+
+model JobOffer {
+  id            Int    @id @default(autoincrement())
+  providerId    String @map("provider_id")
+  providerJobId String @map("provider_job_id")
+
+  position           String
+  workMode           WorkModeEnum @default(ONSITE) @map("work_mode")
+  employmentType     String?      @map("employment_type")
+  experienceRequired Int?         @map("experience_required")
+
+  minSalary Int?    @map("min_salary")
+  maxSalary Int?    @map("max_salary")
+  currency  String?
+
+  datePosted DateTime? @map("date_posted")
+
+  companyId Int     @map("company_id")
+  company   Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  locationId Int      @map("location_id")
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+
+  requirements String[]
+
+  @@unique([providerId, providerJobId])
+  @@map("job_offers")
+}
