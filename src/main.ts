@@ -24,8 +24,9 @@ async function bootstrap() {
 
   if (configService.get<string>('APP_ENV', 'production') === 'development') {
     app.enableCors();
-    SwaggerConfig.configure(app);
   }
+
+  SwaggerConfig.configure(app);
 
   await app.listen(
     configService.get<number>('APP_PORT', 3000),
