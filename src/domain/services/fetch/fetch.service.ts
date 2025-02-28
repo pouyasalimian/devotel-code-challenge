@@ -9,7 +9,7 @@ import { JobOffer } from 'src/types/job-offer.type';
 
 @Injectable()
 export class FetchService {
-  private readonly activeProviders: IProvider[];
+  private activeProviders: IProvider[];
   constructor(
     private readonly httpService: HttpService,
     private readonly configService: ConfigService,
