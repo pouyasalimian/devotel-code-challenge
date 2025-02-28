@@ -3,7 +3,6 @@ import { Company } from './company.type';
 import { Location } from './location.type';
 
 export type JobOffer = {
-  id: number;
   providerId: string;
   providerJobId: string;
   position: string;
