@@ -4,15 +4,14 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 export class SwaggerConfig {
   static configure(app: INestApplication) {
     const options = new DocumentBuilder()
-      .setTitle('Provider Api Doc')
+      .setTitle('Job Offer Service Api Docs')
       .setVersion('v1.0')
-      .addBearerAuth()
       .build();
 
     const document = SwaggerModule.createDocument(app, options);
 
     SwaggerModule.setup('/api', app, document, {
-      customSiteTitle: 'Provider Api Doc',
+      customSiteTitle: 'Job Offer Service Api Docs',
       swaggerOptions: {
         docExpansion: 'none',
         layout: 'BaseLayout',
