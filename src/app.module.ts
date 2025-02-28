@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
 import { ApiModule } from './api/api.module';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ApiModule } from './api/api.module';
       inject: [ConfigService],
     }),
     ApiModule,
+    TasksModule,
   ],
   controllers: [],
   providers: [],
