@@ -52,7 +52,7 @@ Ensure you have the following installed:
    PROVIDER_BASE_URL='https://assignment.devotel.io'
 
    # Cron
-   FETCH_JOB_OFFER_CRON='* * * * * *'
+   FETCH_JOB_OFFER_CRON='*/1 * * * *'
    ```
 
 ---
